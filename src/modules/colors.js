@@ -25,9 +25,9 @@ export function RGBToHex(rgb) {
       g = (+rgb[1]).toString(16),
       b = (+rgb[2]).toString(16);
 
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
 
     return "#" + r + g + b;
   } else {
@@ -65,10 +65,10 @@ export function RGBAToHexA(rgba) {
       b = (+rgba[2]).toString(16),
       a = Math.round(+rgba[3] * 255).toString(16);
 
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
-    if (a.length == 1) a = "0" + a;
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
+    if (a.length === 1) a = "0" + a;
 
     return "#" + r + g + b + a;
   } else {
@@ -85,13 +85,13 @@ export function hexToRGB(h, isPct) {
     isPct = isPct === true;
 
     // 3 digits
-    if (h.length == 4) {
+    if (h.length === 4) {
       r = "0x" + h[1] + h[1];
       g = "0x" + h[2] + h[2];
       b = "0x" + h[3] + h[3];
 
       // 6 digits
-    } else if (h.length == 7) {
+    } else if (h.length === 7) {
       r = "0x" + h[1] + h[2];
       g = "0x" + h[3] + h[4];
       b = "0x" + h[5] + h[6];
@@ -120,12 +120,12 @@ export function hexAToRGBA(h, isPct) {
       a = 1;
     isPct = isPct === true;
 
-    if (h.length == 5) {
+    if (h.length === 5) {
       r = "0x" + h[1] + h[1];
       g = "0x" + h[2] + h[2];
       b = "0x" + h[3] + h[3];
       a = "0x" + h[4] + h[4];
-    } else if (h.length == 9) {
+    } else if (h.length === 9) {
       r = "0x" + h[1] + h[2];
       g = "0x" + h[3] + h[4];
       b = "0x" + h[5] + h[6];
@@ -142,7 +142,7 @@ export function hexAToRGBA(h, isPct) {
     return (
       "rgba(" +
       (isPct
-        ? r + "%," + g + "%," + b + "%" + "," + a
+        ? r + "%," + g + "%," + b + "%," + a
         : +r + "," + +g + "," + +b + "," + a) +
       ")"
     );
@@ -181,11 +181,11 @@ export function RGBToHSL(rgb) {
 
     // calculate hue
     // no difference
-    if (delta == 0) h = 0;
+    if (delta === 0) h = 0;
     // red is max
-    else if (cmax == r) h = ((g - b) / delta) % 6;
+    else if (cmax === r) h = ((g - b) / delta) % 6;
     // green is max
-    else if (cmax == g) h = (b - r) / delta + 2;
+    else if (cmax === g) h = (b - r) / delta + 2;
     // blue is max
     else h = (r - g) / delta + 4;
 
@@ -198,7 +198,7 @@ export function RGBToHSL(rgb) {
     l = (cmax + cmin) / 2;
 
     // calculate saturation
-    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
     // multiply l and s by 100
     s = +(s * 100).toFixed(1);
@@ -248,11 +248,11 @@ export function RGBAToHSLA(rgba) {
 
     // calculate hue
     // no difference
-    if (delta == 0) h = 0;
+    if (delta === 0) h = 0;
     // red is max
-    else if (cmax == r) h = ((g - b) / delta) % 6;
+    else if (cmax === r) h = ((g - b) / delta) % 6;
     // green is max
-    else if (cmax == g) h = (b - r) / delta + 2;
+    else if (cmax === g) h = (b - r) / delta + 2;
     // blue is max
     else h = (r - g) / delta + 4;
 
@@ -265,7 +265,7 @@ export function RGBAToHSLA(rgba) {
     l = (cmax + cmin) / 2;
 
     // calculate saturation
-    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
     // multiply l and s by 100
     s = +(s * 100).toFixed(1);
@@ -452,11 +452,11 @@ export function hexToHSL(H) {
     let r = 0,
       g = 0,
       b = 0;
-    if (H.length == 4) {
+    if (H.length === 4) {
       r = "0x" + H[1] + H[1];
       g = "0x" + H[2] + H[2];
       b = "0x" + H[3] + H[3];
-    } else if (H.length == 7) {
+    } else if (H.length === 7) {
       r = "0x" + H[1] + H[2];
       g = "0x" + H[3] + H[4];
       b = "0x" + H[5] + H[6];
@@ -472,9 +472,9 @@ export function hexToHSL(H) {
       s = 0,
       l = 0;
 
-    if (delta == 0) h = 0;
-    else if (cmax == r) h = ((g - b) / delta) % 6;
-    else if (cmax == g) h = (b - r) / delta + 2;
+    if (delta === 0) h = 0;
+    else if (cmax === r) h = ((g - b) / delta) % 6;
+    else if (cmax === g) h = (b - r) / delta + 2;
     else h = (r - g) / delta + 4;
 
     h = Math.round(h * 60);
@@ -482,7 +482,7 @@ export function hexToHSL(H) {
     if (h < 0) h += 360;
 
     l = (cmax + cmin) / 2;
-    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
 
@@ -500,13 +500,13 @@ export function hexAToHSLA(H) {
       b = 0,
       a = 1;
     // 4 digits
-    if (H.length == 5) {
+    if (H.length === 5) {
       r = "0x" + H[1] + H[1];
       g = "0x" + H[2] + H[2];
       b = "0x" + H[3] + H[3];
       a = "0x" + H[4] + H[4];
       // 8 digits
-    } else if (H.length == 9) {
+    } else if (H.length === 9) {
       r = "0x" + H[1] + H[2];
       g = "0x" + H[3] + H[4];
       b = "0x" + H[5] + H[6];
@@ -524,9 +524,9 @@ export function hexAToHSLA(H) {
       s = 0,
       l = 0;
 
-    if (delta == 0) h = 0;
-    else if (cmax == r) h = ((g - b) / delta) % 6;
-    else if (cmax == g) h = (b - r) / delta + 2;
+    if (delta === 0) h = 0;
+    else if (cmax === r) h = ((g - b) / delta) % 6;
+    else if (cmax === g) h = (b - r) / delta + 2;
     else h = (r - g) / delta + 4;
 
     h = Math.round(h * 60);
@@ -534,7 +534,7 @@ export function hexAToHSLA(H) {
     if (h < 0) h += 360;
 
     l = (cmax + cmin) / 2;
-    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
 
@@ -605,9 +605,9 @@ export function HSLToHex(hsl) {
     b = Math.round((b + m) * 255).toString(16);
 
     // prepend 0s if necessary
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
 
     return "#" + r + g + b;
   } else {
@@ -680,10 +680,10 @@ export function HSLAToHexA(hsla) {
     b = Math.round((b + m) * 255).toString(16);
     a = Math.round(a * 255).toString(16);
 
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
-    if (a.length == 1) a = "0" + a;
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
+    if (a.length === 1) a = "0" + a;
 
     return "#" + r + g + b + a;
   } else {
@@ -727,9 +727,9 @@ export function nameToHex(name) {
     g = (+rgb[1]).toString(16),
     b = (+rgb[2]).toString(16);
 
-  if (r.length == 1) r = "0" + r;
-  if (g.length == 1) g = "0" + g;
-  if (b.length == 1) b = "0" + b;
+  if (r.length === 1) r = "0" + r;
+  if (g.length === 1) g = "0" + g;
+  if (b.length === 1) b = "0" + b;
 
   return "#" + r + g + b;
 }
@@ -759,9 +759,9 @@ export function nameToHSL(name) {
     s = 0,
     l = 0;
 
-  if (delta == 0) h = 0;
-  else if (cmax == r) h = ((g - b) / delta) % 6;
-  else if (cmax == g) h = (b - r) / delta + 2;
+  if (delta === 0) h = 0;
+  else if (cmax === r) h = ((g - b) / delta) % 6;
+  else if (cmax === g) h = (b - r) / delta + 2;
   else h = (r - g) / delta + 4;
 
   h = Math.round(h * 60);
@@ -769,7 +769,7 @@ export function nameToHSL(name) {
   if (h < 0) h += 360;
 
   l = (cmax + cmin) / 2;
-  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
