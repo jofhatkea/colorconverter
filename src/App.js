@@ -1,24 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ColorBox from "./ColorBox";
-import {
-  RGBToHex,
-  RGBAToHexA,
-  hexToRGB,
-  hexAToRGBA,
-  RGBToHSL,
-  RGBAToHSLA,
-  HSLToRGB,
-  HSLAToRGBA,
-  hexToHSL,
-  hexAToHSLA,
-  HSLToHex,
-  HSLAToHexA,
-  nameToRGB,
-  nameToHex,
-  nameToHSL
-} from "./modules/colors";
+import ColorBox from "./components/ColorBox";
+
 import { knownColors } from "./modules/knownColors";
 import { getColorFormat } from "./modules/getColorFormat";
+import { getColorCodes } from "./modules/helpers";
 import "./App.css";
 
 function App() {
@@ -26,7 +11,7 @@ function App() {
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   useEffect(() => {
-    //TODO: brug ref til input
+    //TODO: brug ref til input (så vi ikke lytter på input, og kun når den er i fokus)
     window.addEventListener("keyup", handleDropDown);
     function handleDropDown(e) {
       if (suggestions.length > 0) {
@@ -48,78 +33,17 @@ function App() {
       };
     }
   }, [activeSuggestion, suggestions]);
-  let colorHex, colorHexA, colorRgb, colorRgbA, colorHsl, colorHslA;
+  //let colorHex, colorHexA, colorRgb, colorRgbA, colorHsl, colorHslA;
   const colorFormat = getColorFormat(input);
-  switch (colorFormat) {
-    case "rgb":
-      colorHex = RGBToHex(input);
-      colorHexA = colorHex + "ff";
-      colorRgb = input;
-      colorRgbA = hexAToRGBA(colorHexA);
-      colorHsl = RGBToHSL(input);
-      colorHslA = RGBAToHSLA(colorRgbA);
-      break;
-    case "rgba":
-      colorHexA = RGBAToHexA(input);
-      colorHex = colorHexA.substr(0, 7);
-      colorRgb = hexToRGB(colorHex);
-      colorRgbA = input;
-      colorHsl = hexToHSL(colorHex);
-      colorHslA = RGBAToHSLA(input);
-      break;
-    case "hsl":
-      colorHex = HSLToHex(input);
-      colorHexA = colorHex + "ff";
-      colorRgb = HSLToRGB(input);
-      colorRgbA = hexAToRGBA(colorHexA);
-      colorHsl = input;
-      colorHslA = hexAToHSLA(colorHexA);
-      break;
-    case "hsla":
-      colorHslA = input;
-      colorHexA = HSLAToHexA(input);
-      colorRgbA = HSLAToRGBA(input);
-      colorHex = HSLToHex(
-        (input.split(",").slice(0, 3) + ")").replace("hsla", "hsl")
-      );
-      colorRgb = hexToRGB(colorHex);
-      colorHsl = hexToHSL(colorHex);
+  const [
+    colorHex,
+    colorHexA,
+    colorRgb,
+    colorRgbA,
+    colorHsl,
+    colorHslA
+  ] = getColorCodes(colorFormat, input);
 
-      break;
-    case "hex":
-      let normalizedInput = input;
-      if (input.length < 7) {
-        const parts = input.split("");
-        normalizedInput =
-          "#" + parts[1] + parts[1] + parts[2] + parts[2] + parts[3] + parts[3];
-      }
-      colorHex = input;
-      colorRgb = hexToRGB(normalizedInput);
-      colorHsl = hexToHSL(normalizedInput);
-      colorHexA = normalizedInput + "ff"; //this will break if #FF or #FFF i guess
-      colorRgbA = hexAToRGBA(colorHexA);
-      colorHslA = hexAToHSLA(colorHexA);
-      break;
-    case "hexa":
-      colorHexA = input;
-      colorRgbA = hexAToRGBA(input);
-      colorHslA = hexAToHSLA(input);
-      colorHex = colorHexA.substring(0, 7);
-      colorRgb = hexToRGB(colorHex);
-      colorHsl = hexToHSL(colorHex);
-      break;
-    case "name":
-      colorHex = nameToHex(input);
-      colorRgb = nameToRGB(input);
-      colorHsl = nameToHSL(input);
-      colorHexA = colorHex + "ff";
-      colorRgbA = hexAToRGBA(colorHexA);
-      colorHslA = hexAToHSLA(colorHexA);
-      break;
-    default:
-      colorHex = colorHexA = colorRgb = colorRgbA = colorHsl = colorHslA = "";
-  }
-  //TODO: hsla somethimes has fractions in opacity, which makes other functions trip up
   function updateInputState(val) {
     setInput(val);
     setSuggestions(
@@ -129,13 +53,30 @@ function App() {
     );
     setActiveSuggestion(-1);
   }
-
+  //TODO: calculate a decent contrast for the colorboxes
+  /* //refractor into colorbox wrapper? so contrast is calculated once
+function luminanace(r, g, b) {
+    var a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.03928
+            ? v / 12.92
+            : Math.pow( (v + 0.055) / 1.055, 2.4 );
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+}
+function contrast(rgb1, rgb2) {
+    return (luminanace(rgb1[0], rgb1[1], rgb1[2]) + 0.05)
+         / (luminanace(rgb2[0], rgb2[1], rgb2[2]) + 0.05);
+}
+contrast([255, 255, 255], [255, 255, 0]); // 1.074 for yellow, 4.5 is the goal, 3 for bigger text
+contrast([255, 255, 255], [0, 0, 255]); // 8.592 for blue
+  */
   return (
     <div id="wrapper">
       <div id="formWrapper">
         <form
           onSubmit={e => {
-            e.preventDefault(); //TODO: virker ikke
+            e.preventDefault();
           }}
         >
           <input

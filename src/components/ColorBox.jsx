@@ -1,5 +1,5 @@
 import React from "react";
-import { copyToClipboard } from "./modules/helpers";
+import { copyToClipboard } from "../modules/helpers";
 
 export default function ColorBox({ color, desc }) {
   return (
