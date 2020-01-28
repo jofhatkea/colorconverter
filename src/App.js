@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ColorBox from "./ColorBox";
 import {
   RGBToHex,
   RGBAToHexA,
@@ -19,18 +20,6 @@ import {
 import { knownColors } from "./modules/knownColors";
 import { getColorFormat } from "./modules/getColorFormat";
 import "./App.css";
-
-const copyToClipboard = str => {
-  const el = document.createElement("textarea");
-  el.value = str;
-  el.setAttribute("readonly", "");
-  el.style.position = "absolute";
-  el.style.left = "-9999px";
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
-};
 
 function App() {
   const [input, setInput] = useState("");
@@ -171,46 +160,12 @@ function App() {
           </ul>
         </form>
       </div>
-      <div
-        onClick={e => copyToClipboard(colorHex)}
-        className="colorbox"
-        style={{ background: colorHex }}
-      >
-        <header>
-          <h1>As Hex</h1>
-        </header>
-        <p>{colorHex}</p>
-      </div>
-      <div className="colorbox" style={{ background: colorHexA }}>
-        <header>
-          <h1>As HexA</h1>
-        </header>
-        <p>{colorHexA}</p>
-      </div>
-      <div className="colorbox" style={{ background: colorRgb }}>
-        <header>
-          <h1>As RGB</h1>
-        </header>
-        <p>{colorRgb}</p>
-      </div>
-      <div className="colorbox" style={{ background: colorRgbA }}>
-        <header>
-          <h1>As RGBA</h1>
-        </header>
-        <p>{colorRgbA}</p>
-      </div>
-      <div className="colorbox" style={{ background: colorHsl }}>
-        <header>
-          <h1>As HSL</h1>
-        </header>
-        <p>{colorHsl}</p>
-      </div>
-      <div className="colorbox" style={{ background: colorHslA }}>
-        <header>
-          <h1>As HSLA</h1>
-        </header>
-        <p>{colorHslA}</p>
-      </div>
+      <ColorBox color={colorHex} desc="Hex" />
+      <ColorBox color={colorHexA} desc="HexA" />
+      <ColorBox color={colorRgb} desc="RGB" />
+      <ColorBox color={colorRgbA} desc="RGBA" />
+      <ColorBox color={colorHsl} desc="HSL" />
+      <ColorBox color={colorHslA} desc="HSLA" />
     </div>
   );
 }
