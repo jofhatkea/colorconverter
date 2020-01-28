@@ -23,6 +23,7 @@ input {
   font-size: 2rem;
   display: block;
   width: 100%;
+  padding: 8px;
 }
 #wrapper .colorbox {
   border: 1px solid #000;
@@ -55,4 +56,7 @@ form ul li {
 }
 form ul li:last-of-type {
   border-bottom: 1px solid #000;
+}
+.active {
+  background: hotpink;
 }
