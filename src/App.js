@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ColorBox from "./components/ColorBox";
 
 import { knownColors } from "./modules/knownColors";
@@ -72,43 +74,46 @@ contrast([255, 255, 255], [255, 255, 0]); // 1.074 for yellow, 4.5 is the goal, 
 contrast([255, 255, 255], [0, 0, 255]); // 8.592 for blue
   */
   return (
-    <div id="wrapper">
-      <div id="formWrapper">
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-          }}
-        >
-          <input
-            type="text"
-            name="color"
-            value={input}
-            onChange={e => updateInputState(e.target.value)}
-            onFocus={e => e.target.select()}
-            placeholder="Type a color, any format"
-          />
-          <ul>
-            {suggestions.map((sug, i) => {
-              return (
-                <li
-                  key={i}
-                  className={activeSuggestion === i ? "active" : ""}
-                  onClick={() => updateInputState(sug)}
-                >
-                  {sug}
-                </li>
-              );
-            })}
-          </ul>
-        </form>
+    <>
+      <ToastContainer />
+      <div id="wrapper">
+        <div id="formWrapper">
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+            }}
+          >
+            <input
+              type="text"
+              name="color"
+              value={input}
+              onChange={e => updateInputState(e.target.value)}
+              onFocus={e => e.target.select()}
+              placeholder="Type a color, any format"
+            />
+            <ul>
+              {suggestions.map((sug, i) => {
+                return (
+                  <li
+                    key={i}
+                    className={activeSuggestion === i ? "active" : ""}
+                    onClick={() => updateInputState(sug)}
+                  >
+                    {sug}
+                  </li>
+                );
+              })}
+            </ul>
+          </form>
+        </div>
+        <ColorBox color={colorHex} desc="Hex" />
+        <ColorBox color={colorHexA} desc="HexA" />
+        <ColorBox color={colorRgb} desc="RGB" />
+        <ColorBox color={colorRgbA} desc="RGBA" />
+        <ColorBox color={colorHsl} desc="HSL" />
+        <ColorBox color={colorHslA} desc="HSLA" />
       </div>
-      <ColorBox color={colorHex} desc="Hex" />
-      <ColorBox color={colorHexA} desc="HexA" />
-      <ColorBox color={colorRgb} desc="RGB" />
-      <ColorBox color={colorRgbA} desc="RGBA" />
-      <ColorBox color={colorHsl} desc="HSL" />
-      <ColorBox color={colorHslA} desc="HSLA" />
-    </div>
+    </>
   );
 }
 

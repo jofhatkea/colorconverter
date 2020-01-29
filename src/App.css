@@ -88,8 +88,6 @@
   --height-width-equation: calc((100vw - 6rem - 2rem) / 3);
 }
 
-/*#4a5568;
-#e2e8f0;*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -132,7 +130,7 @@ input {
   border: none;
 }
 input:not(:placeholder-shown) {
-  border-bottom: 2px solid var(--color-grey-darker);
+  /*border-bottom: 2px solid var(--color-grey-darker);*/
 }
 input:focus {
   color: var(--color-grey-darker);
@@ -174,6 +172,9 @@ input:focus {
   border-radius: var(--util-rounded-lg);
   color: var(--color-grey-lighter);
   font-weight: bold;
+}
+.colorbox p:empty {
+  display: none;
 }
 form ul {
   position: absolute;
