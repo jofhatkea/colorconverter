@@ -5,7 +5,7 @@ import { knownColors } from "./modules/knownColors";
 import { getColorFormat } from "./modules/getColorFormat";
 import { getColorCodes } from "./modules/helpers";
 import "./App.css";
-
+//TODO: convert color to name if match (same procedure as anme to HSL, look up each name value (turns rgb) and do a map)
 function App() {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
