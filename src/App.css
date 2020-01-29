@@ -80,7 +80,14 @@
   --color-pink-dark: #eb5286;
   --color-pink-darker: #6f213f;
   --color-pink-darkest: #451225;
+
+  --util-rounded-lg: 0.5rem;
+  --util-rounded-md: 0.375rem;
+  --util-rounded-sm: 0.25rem;
+
+  --height-width-equation: calc((100vw - 6rem - 2rem) / 3);
 }
+
 /*#4a5568;
 #e2e8f0;*/
 * {
@@ -101,7 +108,7 @@ body {
   padding-top: 2rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(3, calc((100vw - 6rem - 2rem) / 3));
+  grid-template-columns: repeat(3, var(--height-width-equation));
   margin: 3rem;
 }
 #wrapper > #formWrapper {
@@ -121,8 +128,11 @@ input {
   color: var(--color-grey-lighter);
   background: var(--color-grey-darker);
   transition: all 0.3s;
-  border-radius: 0.5rem;
+  border-radius: var(--util-rounded-lg);
   border: none;
+}
+input:not(:placeholder-shown) {
+  border-bottom: 2px solid var(--color-grey-darker);
 }
 input:focus {
   color: var(--color-grey-darker);
@@ -130,14 +140,14 @@ input:focus {
 }
 #wrapper .colorbox {
   border: 1px solid var(--color-blue-dark);
-  height: calc((100vw - 6rem - 2rem) / 3);
+  height: var(--height-width-equation);
   text-align: center;
   transition: all 0.3s;
   justify-content: center;
   display: flex;
   flex-direction: column;
   position: relative;
-
+  border-radius: var(--util-rounded-md);
   background: var(--color-grey-lightest);
 }
 .colorbox > header {
@@ -150,8 +160,7 @@ input:focus {
   background: var(--color-grey-light);
   padding: 0.5rem;
   font-size: 0.8rem;
-
-  border-radius: 0.5rem;
+  border-radius: var(--util-rounded-sm);
   color: var(--color-grey-darkest);
   display: inline-block;
 
@@ -160,6 +169,11 @@ input:focus {
 }
 .colorbox p {
   align-self: center;
+  background: var(--color-blue-light);
+  padding: 1rem;
+  border-radius: var(--util-rounded-lg);
+  color: var(--color-grey-lighter);
+  font-weight: bold;
 }
 form ul {
   position: absolute;
