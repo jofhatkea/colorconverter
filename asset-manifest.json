@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/colorconverter/static/css/main.a0bccfda.chunk.css",
+    "main.js": "/colorconverter/static/js/main.485c2301.chunk.js",
+    "main.js.map": "/colorconverter/static/js/main.485c2301.chunk.js.map",
+    "runtime-main.js": "/colorconverter/static/js/runtime-main.08d07612.js",
+    "runtime-main.js.map": "/colorconverter/static/js/runtime-main.08d07612.js.map",
+    "static/css/2.5dbdccff.chunk.css": "/colorconverter/static/css/2.5dbdccff.chunk.css",
+    "static/js/2.d0f149e1.chunk.js": "/colorconverter/static/js/2.d0f149e1.chunk.js",
+    "static/js/2.d0f149e1.chunk.js.map": "/colorconverter/static/js/2.d0f149e1.chunk.js.map",
+    "index.html": "/colorconverter/index.html",
+    "precache-manifest.d6e1d22eae5c640555fe633b90cac830.js": "/colorconverter/precache-manifest.d6e1d22eae5c640555fe633b90cac830.js",
+    "service-worker.js": "/colorconverter/service-worker.js",
+    "static/css/2.5dbdccff.chunk.css.map": "/colorconverter/static/css/2.5dbdccff.chunk.css.map",
+    "static/css/main.a0bccfda.chunk.css.map": "/colorconverter/static/css/main.a0bccfda.chunk.css.map",
+    "static/js/2.d0f149e1.chunk.js.LICENSE": "/colorconverter/static/js/2.d0f149e1.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.08d07612.js",
+    "static/css/2.5dbdccff.chunk.css",
+    "static/js/2.d0f149e1.chunk.js",
+    "static/css/main.a0bccfda.chunk.css",
+    "static/js/main.485c2301.chunk.js"
+  ]
+}
