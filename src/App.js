@@ -85,6 +85,7 @@ contrast([255, 255, 255], [0, 0, 255]); // 8.592 for blue
             value={input}
             onChange={e => updateInputState(e.target.value)}
             onFocus={e => e.target.select()}
+            placeholder="Type a color, any format"
           />
           <ul>
             {suggestions.map((sug, i) => {
